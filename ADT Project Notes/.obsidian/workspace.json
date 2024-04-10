@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "ADT Project.md",
+                "file": "IAlgorithm.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "ADT Project.md",
+                "file": "IAlgorithm.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "ADT Project.md",
+                "file": "IAlgorithm.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "ADT Project.md"
+                "file": "IAlgorithm.md"
               }
             }
           }
@@ -148,14 +148,14 @@
   },
   "active": "6c6b1a47c0e23c44",
   "lastOpenFiles": [
-    "Graph Class.md",
     "ADT Project.md",
+    "A-star.md",
+    "Graph Class.md",
     "Algorithms.md",
     "Untitled 1.canvas",
     "IAlgorithm.md",
     "Untitled.canvas",
     "Dijkstra.md",
-    "A*.md",
     "DFS.md",
     "Custom Algorithm.md",
     "Map Parser.md",

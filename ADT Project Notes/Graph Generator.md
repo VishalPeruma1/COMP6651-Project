@@ -1,0 +1,1 @@
+1. Generate(n, r) : [[Graph Class]]

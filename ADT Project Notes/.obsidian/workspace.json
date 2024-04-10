@@ -1,0 +1,166 @@
+{
+  "main": {
+    "id": "2deb4d74b2885746",
+    "type": "split",
+    "children": [
+      {
+        "id": "a485815a1cc5f619",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "6c6b1a47c0e23c44",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "ADT Project.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "17f36a17477a4fae",
+    "type": "split",
+    "children": [
+      {
+        "id": "bb6d427f99475d32",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "354c38038cd89955",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "c68ecbe1c23615fb",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "5b84ab7f0bf8f63d",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "e7f33a1314a9cc21",
+    "type": "split",
+    "children": [
+      {
+        "id": "16e8e2972fbd789c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "79bbe53cb78c5b36",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "ADT Project.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "5ddb1e23090357f9",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "ADT Project.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "614fd950b4802791",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "1fca2eed69ccb8b0",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "ADT Project.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "6c6b1a47c0e23c44",
+  "lastOpenFiles": [
+    "Graph Class.md",
+    "ADT Project.md",
+    "Algorithms.md",
+    "Untitled 1.canvas",
+    "IAlgorithm.md",
+    "Untitled.canvas",
+    "Dijkstra.md",
+    "A*.md",
+    "DFS.md",
+    "Custom Algorithm.md",
+    "Map Parser.md",
+    "Graph Generator.md",
+    "Graph.md",
+    "Graph Genrator.md"
+  ]
+}

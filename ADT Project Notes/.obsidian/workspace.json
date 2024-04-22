@@ -11,8 +11,12 @@
             "id": "6c6b1a47c0e23c44",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "Graph Class.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
         ]
@@ -81,6 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "Graph Class.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "Graph Class.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +124,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "Graph Class.md"
+              }
             }
           }
         ]
@@ -140,16 +148,16 @@
   },
   "active": "6c6b1a47c0e23c44",
   "lastOpenFiles": [
-    "Graph Class.md",
-    "Dijkstra.md",
-    "DFS.md",
-    "Custom Algorithm.md",
     "ADT Project.md",
+    "Custom Algorithm.md",
     "A-star.md",
     "IAlgorithm.md",
+    "Graph Class.md",
     "Algorithms.md",
     "Untitled 1.canvas",
     "Untitled.canvas",
+    "Dijkstra.md",
+    "DFS.md",
     "Map Parser.md",
     "Graph Generator.md",
     "Graph.md",

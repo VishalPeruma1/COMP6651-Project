@@ -20,6 +20,11 @@ public class Edge {
             return false;
 
         var other = (Edge)obj;
-        return other.name == name && other.v1.equals(v1) && other.v2.equals(v2);
+        return other.v1.equals(v1) && other.v2.equals(v2) || other.v1.equals(v2) && other.v2.equals(v1);
+    }
+
+    @Override
+    public String toString() {
+        return v1.getName() + "---" + v2.getName();
     }
 }

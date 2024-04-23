@@ -1,8 +1,15 @@
+import Data.Graph;
+import FileIO.GraphReader;
+import FileIO.GraphSaver;
 import GraphGeneration.Generator;
 import LCC.LCCStats;
 
 public class Main {
     public static void main(String[] args) {
+        Graph downloadedGraph1 = GraphReader.readGraph("DSJC500-5.mtx");
+        Graph downloadedGraph2 = GraphReader.readGraph("inf-euroroad.edges");
+        Graph downloadedGraph3 = GraphReader.readGraph("inf-power.mtx");
+      
         System.out.println("N = 300 Computing...");
         var customGen1 = new CustomGeneration(300);
         customGen1.findOptimal(0,1, 0.9f*300, 0.95f*300);

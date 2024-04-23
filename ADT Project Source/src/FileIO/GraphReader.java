@@ -56,8 +56,9 @@ public class GraphReader {
             }
             br.close();
             return new Graph(graphName, vertexList, edgeList);
-        } catch (IOException ex) {
-            throw new RuntimeException(ex);
+        }  catch (Exception e) {
+            System.out.println("File does not exist!");
+            return null;
         }
     }
 }

@@ -16,6 +16,10 @@ public class LCCStats {
         return lcc.vertexList.size();
     }
 
+    public Graph getLcc() {
+        return lcc;
+    }
+
     public int lccAvgDeg(){
         return (2*lcc.edgeList.size())/lccVertCount();
     }

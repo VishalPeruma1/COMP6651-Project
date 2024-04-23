@@ -23,6 +23,14 @@ public class Edge {
         return other.v1.equals(v1) && other.v2.equals(v2) || other.v1.equals(v2) && other.v2.equals(v1);
     }
 
+    public Vertex getNeighbor(Vertex vertex){
+        if(vertex.equals(v1))
+            return v2;
+        if(vertex.equals(v2))
+            return v1;
+        return null;
+    }
+
     @Override
     public String toString() {
         return v1.getName() + "---" + v2.getName();

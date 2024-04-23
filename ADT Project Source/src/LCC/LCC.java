@@ -35,7 +35,6 @@ public class LCC {
                     continue;
 
                 if (largestComponentVertices.contains(edge.v1) && largestComponentVertices.contains(edge.v2)) {
-                    System.out.println(edge);
                     largestComponentEdges.add(edge);
                 }
             }

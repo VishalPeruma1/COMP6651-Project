@@ -42,6 +42,7 @@ public class Generator {
                     continue;
                 edgeIndx++;
                 vert1.addEdge(e);
+                vert2.addEdge(e);
                 edges.add(e);
             }
         }

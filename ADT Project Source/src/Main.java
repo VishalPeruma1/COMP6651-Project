@@ -1,9 +1,10 @@
 import GraphGeneration.Generator;
-import LCC.LCC;
+import LCC.LCCStats;
 
 public class Main {
     public static void main(String[] args) {
-        var g = Generator.generateGraph(10, 0.5f);
-        System.out.println("|VLCC| = " + LCC.largestConnectedComponent(g).vertexList.size());
+        var stats = new LCCStats(Generator.generateGraph(10, 0.5f));
+        System.out.println("|VLCC| = " + stats.lccVertCount());
+        System.out.println("A  Deg = " + stats.lccAvgDeg());
     }
 }

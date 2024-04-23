@@ -29,7 +29,6 @@ public class GraphReader {
             String graphName = fileName.substring(0, fileName.lastIndexOf('.'));
             br = new BufferedReader(new FileReader(filePath));
             int edgeIndex = 0;
-            float positionIndex = 0.0f;
             String line;
             while ((line = br.readLine()) != null) {
                 if (line.startsWith("%")) continue; // Skipping comments
@@ -63,16 +62,26 @@ public class GraphReader {
                         }
                         break;
                     case 6:
-                        vertex1Name = parts[0];
-                        vertex2Name = parts[3];
-                        vertex1 = new Vertex(vertex1Name, new Vector2(Float.parseFloat(parts[1]), Float.parseFloat(parts[2])));
-                        vertex2 = new Vertex(vertex2Name, new Vector2(Float.parseFloat(parts[4]), Float.parseFloat(parts[5])));
-                        vertexList.add(vertex1);
-                        vertexList.add(vertex2);
+                        vertex1Name = "vert_"+parts[0];
+                        vertex2Name = "vert_"+parts[3];
+                        if(!vertexMap.containsKey(vertex1Name)) {
+                            vertex1 = new Vertex(vertex1Name, new Vector2(Float.parseFloat(parts[1]), Float.parseFloat(parts[2])));
+                            vertexMap.put(vertex1Name, vertex1);
+                            vertexList.add(vertex1);
+                        }
+                        if(!vertexMap.containsKey(vertex2Name)) {
+                            vertex2 = new Vertex(vertex2Name, new Vector2(Float.parseFloat(parts[4]), Float.parseFloat(parts[5])));
+                            vertexMap.put(vertex2Name, vertex2);
+                            vertexList.add(vertex2);
+                        }
+                        vertex1 = vertexMap.get(vertex1Name);
+                        vertex2 = vertexMap.get(vertex2Name);
                         edge = new Edge("edge_"+(++edgeIndex), vertex1, vertex2);
-                        vertex1.addEdge(edge);
-                        vertex2.addEdge(edge);
-                        edgeList.add(edge);
+                        if(!edgeList.contains(edge)) {
+                            edgeList.add(edge);
+                            vertex1.addEdge(edge);
+                            vertex2.addEdge(edge);
+                        }
                         break;
                     default:
                 }

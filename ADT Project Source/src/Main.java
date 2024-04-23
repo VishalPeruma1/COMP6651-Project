@@ -11,6 +11,9 @@ public class Main {
         Graph downloadedGraph2 = GraphReader.readGraph("inf-euroroad.edges");
         Graph downloadedGraph3 = GraphReader.readGraph("inf-power.mtx");
 
+        var cg = new CustomGeneration(300);
+        cg.findOptimal(0,1,(0.9f*300),(0.95f*300));
+
         System.out.println("Computing LCC for DSJC500-5.mtx...");
         var lccStats1 = new LCCStats(downloadedGraph1);
         System.out.println("LCC Vertices of DSJC500-5.mtx: " + lccStats1.lccVertCount());

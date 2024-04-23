@@ -27,4 +27,15 @@ public class Vector2 {
         var ySquared = Math.pow((v1.x - v2.x),2);
         return Math.sqrt(xSquared + ySquared);
     }
+
+    public static double sqauredDist(Vector2 v1, Vector2 v2) {
+        var xSquared = Math.pow((v1.x - v2.x),2);
+        var ySquared = Math.pow((v1.x - v2.x),2);
+        return xSquared + ySquared;
+    }
+
+    @Override
+    public String toString() {
+        return "("+String.format("%.03f", x)+","+String.format("%.03f", y)+")";
+    }
 }

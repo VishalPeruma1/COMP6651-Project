@@ -15,4 +15,17 @@ public class Graph {
         this.vertexList = vertexList;
         this.edgeList = edgeList;
     }
+
+    @Override
+    public String toString() {
+        var str = "Graph: " + name+"\nVertices";
+        for (Vertex v : vertexList) {
+            str += "\n\t"+v.toString();
+        }
+        str += "\nEdges";
+        for (Edge e : edgeList) {
+            str += "\n\t"+e.toString();
+        }
+        return str+"\n";
+    }
 }

@@ -31,7 +31,11 @@ public class LCC {
         List<Edge> largestComponentEdges = new ArrayList<>();
         for (Vertex vertex : largestComponentVertices) {
             for (Edge edge : vertex.getEdgeList()) {
+                if(largestComponentEdges.contains(edge))
+                    continue;
+
                 if (largestComponentVertices.contains(edge.v1) && largestComponentVertices.contains(edge.v2)) {
+                    System.out.println(edge);
                     largestComponentEdges.add(edge);
                 }
             }

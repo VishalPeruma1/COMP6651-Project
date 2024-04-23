@@ -22,6 +22,7 @@ public class Vector2 {
     }
 
     public static Vector2 zero() {return new Vector2(0,0);}
+
     public static double euclidianDistance(Vector2 v1, Vector2 v2) {
         var xSquared = Math.pow((v1.x - v2.x),2);
         var ySquared = Math.pow((v1.x - v2.x),2);

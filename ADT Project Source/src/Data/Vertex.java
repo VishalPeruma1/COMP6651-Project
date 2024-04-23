@@ -1,5 +1,6 @@
 package Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,9 +36,16 @@ public class Vertex {
         this.edgeList = edgeList;
     }
 
+    public void addEdge(Edge edge){
+        if(edgeList == null)
+            edgeList = new ArrayList<>();
+        edgeList.add(edge);
+    }
+
     public Vertex(String name, Vector2 position){
         this.name = name;
         this.position = position;
+        edgeList = new ArrayList<>();
     }
 
     public Vertex(String name, Vector2 position, List<Edge> edges){
@@ -53,5 +61,10 @@ public class Vertex {
 
         var other = (Vertex)obj;
         return other.position.equals(position) && other.name.equals(name);
+    }
+
+    @Override
+    public String toString() {
+        return name + " " + position.toString();
     }
 }

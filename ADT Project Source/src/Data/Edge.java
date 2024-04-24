@@ -8,6 +8,8 @@ public class Edge {
     public Vertex v1;
     public Vertex v2;
 
+    public double weight = 0;
+
     public Edge(String name, Vertex v1, Vertex v2){
         this.name = name;
         this.v1 = v1;

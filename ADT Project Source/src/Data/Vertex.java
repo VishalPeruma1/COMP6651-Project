@@ -11,6 +11,10 @@ public class Vertex {
     private String name;
     private List<Edge> edgeList;
 
+    //for dijkstra
+    public double dijDist;
+    public Vertex dijkPrev;
+
 
     public Vector2 getPosition(){
         return position;

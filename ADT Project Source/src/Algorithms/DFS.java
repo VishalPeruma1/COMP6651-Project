@@ -3,30 +3,21 @@ package Algorithms;
 import Data.Edge;
 import Data.Graph;
 import Data.Vertex;
-import Data.Vector2;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.HashMap;
-import java.util.Stack;
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.*;
 
 public class DFS {
 
-    public static List<Vertex> findLongestSimplePath(Graph graph) {
+    static int time = 0;
+
+    public static int findDepth(Vertex u) {
         Set<Vertex> visited = new HashSet<>();
         Stack<Vertex> stack = new Stack<>();
-        Map<Vertex, Vertex> parent = new HashMap<>();
-        Map<Vertex, Double> distance = new HashMap<>();
+        Map<Vertex, Integer> depth = new HashMap<>();
 
-        Vertex start = graph.vertexList.getFirst();
-
-        stack.push(start);
-        visited.add(start);
-        distance.put(start, 0.0);
+        stack.push(u);
+        visited.add(u);
+        depth.put(u, 0);
 
         while (!stack.isEmpty()) {
             Vertex current = stack.pop();
@@ -35,27 +26,53 @@ public class DFS {
                 if (!visited.contains(neighbor)) {
                     visited.add(neighbor);
                     stack.push(neighbor);
-                    parent.put(neighbor, current);
-                    distance.put(neighbor, distance.get(current) + Vector2.euclidianDistance(current.getPosition(), neighbor.getPosition()));
+                    depth.put(neighbor, depth.get(current) + 1);
                 }
             }
         }
 
-        Vertex farthest = start;
-        for (Vertex vertex : distance.keySet()) {
-            if (distance.get(vertex) > distance.get(farthest)) {
-                farthest = vertex;
+        int maxDepth = 0;
+        for (Integer d : depth.values()) {
+            maxDepth = Math.max(maxDepth, d);
+        }
+        return maxDepth;
+    }
+
+    public static int DFSVisit(Vertex u, Set<Vertex> visited, Stack<Vertex> stack,
+                               Map<Vertex, Integer> discoveryTime, Map<Vertex, Integer> finishTime) {
+        time++;
+        discoveryTime.put(u, time);
+        stack.push(u);
+        visited.add(u);
+        int depth = 0;
+
+        for (Edge edge : u.getEdgeList()) {
+            Vertex v = edge.v1.equals(u) ? edge.v2 : edge.v1;
+            if (!visited.contains(v)) {
+                depth = Math.max(depth, DFSVisit(v, visited, stack, discoveryTime, finishTime));
             }
         }
 
-        List<Vertex> longestPath = new ArrayList<>();
-        Vertex current = farthest;
-        while (current != null) {
-            longestPath.add(current);
-            current = parent.get(current);
-        }
+        time++;
+        finishTime.put(u, time);
+        stack.pop();
+        return depth + 1;
+    }
 
-        Collections.reverse(longestPath);
-        return longestPath;
+    public static int DFSBasedLongestSimplePath(Graph graph) {
+        // Determine Largest Connected Component (LCC)
+        // Find Lmax
+        int Lmax = 0;
+        int sqRootVLCC = (int) Math.sqrt(graph.vertexList.size());
+        for (int i = 0; i < sqRootVLCC; i++) {
+            Vertex u = graph.get((new Random().nextInt(graph.vertexList.size())));
+            int vDepth = findDepth(u);
+
+            Vertex v = graph.get(new Random().nextInt(graph.vertexList.size()));
+            int wDepth = findDepth(v);
+
+            Lmax = Math.max(Lmax, Math.max(vDepth, wDepth));
+        }
+        return Lmax;
     }
 }

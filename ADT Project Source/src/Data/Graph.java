@@ -47,4 +47,8 @@ public class Graph {
         }
         return str+"\n";
     }
+
+    public Vertex get(int i) {
+        return vertexList.get(i);
+    }
 }

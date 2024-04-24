@@ -29,6 +29,12 @@ public class Graph {
         return null;
     }
 
+    public void resetStats(){
+        for(Vertex v : vertexList){
+            v.resetStats();
+        }
+    }
+
     @Override
     public String toString() {
         var str = "Graph: " + name+"\nVertices";

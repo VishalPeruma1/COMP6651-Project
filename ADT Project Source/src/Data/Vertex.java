@@ -18,6 +18,12 @@ public class Vertex {
     public double heuristic;
 
 
+    public void resetStats(){
+        heuristic = 0;
+        dist = 0;
+        prev = null;
+    }
+
     public Vector2 getPosition(){
         return position;
     }

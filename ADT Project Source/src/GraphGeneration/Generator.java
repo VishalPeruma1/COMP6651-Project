@@ -45,7 +45,7 @@ public class Generator {
                 edges.add(e);
             }
         }
-        return new Graph("Graph_"+n+"_"+r,vertices, edges);
+        return new Graph("Graph_"+n+"_"+r,vertices, edges, n, String.valueOf(r));
     }
 
 }

@@ -11,7 +11,7 @@ import java.io.FileWriter;
 public class GraphSaver {
     public static boolean saveGraph(Graph graph, String fileName) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("src/resources/graphs/" + fileName + ".edges"))) {
-            bw.write("% Graph: " + graph.name + "\n");
+            bw.write("% CustomGraph: " + graph.name + "\n");
             for (Edge edge : graph.edgeList) {
                 Vertex v1 = edge.v1;
                 Vertex v2 = edge.v2;

@@ -34,7 +34,6 @@ public class Generator {
                 if(vert1 == vert2)
                     continue;
                 var sqauredDist = Vector2.sqauredDist(vert1.getPosition(),vert2.getPosition());
-                //System.out.println("SQRD: " + sqauredDist + ", R^2: " + (r*r));
                 if(sqauredDist > (r*r))
                     continue;
                 Edge e = new Edge("edge_"+edgeIndx,vert1, vert2);

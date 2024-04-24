@@ -1,5 +1,8 @@
 package LCC;
 
+import Algorithms.BFS;
+import Algorithms.DFS;
+import AlgorithmsButBetter.AStar;
 import AlgorithmsButBetter.Dijkstra;
 import Data.Graph;
 import Data.Vertex;
@@ -52,7 +55,16 @@ public class LCCStats {
         return lMax;
     }
 
+    public int lMaxDFS(){
+        return DFS.DFSBasedLongestSimplePath(lcc);
+    }
+
+    public int lMaxBFS(){
+        return BFS.BFSBasedLongestSimplePath(lcc);
+    }
+
     public void simulate(){
-        System.out.println("MAX LSP " + lMaxAStar());
+        System.out.println("MAX LSP DFS " + lMaxDFS());
+        System.out.println("MAX LSP BFS " + lMaxBFS());
     }
 }

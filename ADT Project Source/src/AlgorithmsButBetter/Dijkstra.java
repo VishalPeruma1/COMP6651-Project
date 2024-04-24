@@ -15,17 +15,17 @@ public class Dijkstra {
 
     private static void initializeSingleSourceMax(Graph G, Vertex s) {
         for (Vertex v : G.vertexList) {
-            v.dijDist = Double.NEGATIVE_INFINITY;
-            v.dijkPrev = null;
+            v.dist = Double.NEGATIVE_INFINITY;
+            v.prev = null;
         }
-        s.dijDist = 0;
+        s.dist = 0;
     }
 
     // Relax-MAX method
     private static void relaxMax(Vertex u, Vertex v) {
-        if (v.dijDist < u.dijDist + 1) {
-            v.dijDist = u.dijDist + 1;
-            v.dijkPrev = u;
+        if (v.dist < u.dist + 1) {
+            v.dist = u.dist + 1;
+            v.prev = u;
         }
     }
 
@@ -33,7 +33,7 @@ public class Dijkstra {
     public static int lsp(Graph G, Vertex s) {
         initializeSingleSourceMax(G, s);
         Set<Vertex> S = new HashSet<>();
-        PriorityQueue<Vertex> Q = new PriorityQueue<>(Comparator.comparingDouble((Vertex v) -> v.dijDist).reversed());
+        PriorityQueue<Vertex> Q = new PriorityQueue<>(Comparator.comparingDouble((Vertex v) -> v.dist).reversed());
         Q.addAll(G.vertexList);
 
         while (!Q.isEmpty()) {
@@ -43,9 +43,9 @@ public class Dijkstra {
                 Vertex v = (e.v1 == u) ? e.v2 : e.v1;
                 if(S.contains(v))
                     continue;
-                var currDist = v.dijDist;
+                var currDist = v.dist;
                 relaxMax(u, v);
-                if (v.dijDist > currDist) {
+                if (v.dist > currDist) {
                     Q.remove(v);
                     Q.offer(v);
                 }
@@ -56,13 +56,12 @@ public class Dijkstra {
         List<Vertex> longestPath = new ArrayList<>();
         List<Edge> edges = new ArrayList<>();
         Vertex current = findVertexWithMaxDistance(G.vertexList);
-        var dist = current.dijDist;
         while (current != null) {
             longestPath.add(current);
-            var e = G.getEdge(current, current.dijkPrev);
+            var e = G.getEdge(current, current.prev);
             if(e != null)
                 edges.add(e);
-            current = current.dijkPrev;
+            current = current.prev;
         }
         return edges.size();
     }
@@ -72,8 +71,8 @@ public class Dijkstra {
         Vertex maxVertex = null;
         double maxDistance = Double.NEGATIVE_INFINITY;
         for (Vertex v : vertexList) {
-            if (v.dijDist > maxDistance) {
-                maxDistance = v.dijDist;
+            if (v.dist > maxDistance) {
+                maxDistance = v.dist;
                 maxVertex = v;
             }
         }

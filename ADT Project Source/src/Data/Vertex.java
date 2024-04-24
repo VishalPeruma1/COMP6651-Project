@@ -12,9 +12,17 @@ public class Vertex {
     private List<Edge> edgeList;
 
     //for dijkstra
-    public double dijDist;
-    public Vertex dijkPrev;
+    public double dist;
+    public Vertex prev;
 
+    public double heuristic;
+
+
+    public void resetStats(){
+        heuristic = 0;
+        dist = 0;
+        prev = null;
+    }
 
     public Vector2 getPosition(){
         return position;

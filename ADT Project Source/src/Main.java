@@ -1,75 +1,107 @@
-import Algorithms.BFS;
-import Algorithms.DFS;
 import Data.Graph;
 import FileIO.GraphReader;
+import FileIO.GraphSaver;
+import GraphGeneration.Generator;
 import LCC.LCCStats;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Main {
     public static void main(String[] args) {
-        Graph downloadedGraph1 = GraphReader.readGraph("DSJC500-5.mtx");
-        Graph downloadedGraph2 = GraphReader.readGraph("inf-euroroad.edges");
-        Graph downloadedGraph3 = GraphReader.readGraph("inf-power.mtx");
+        Scanner sc = new Scanner(System.in);
+        while (true) {
+            System.out.println("--------------------------------");
+            System.out.println("Menu");
+            System.out.println("1. Find Optimal R");
+            System.out.println("2. Generate Custom Graph");
+            System.out.println("3. Run Simulation");
+            System.out.println("4. Run All Simulations");
+            System.out.println("5. Quit");
+            System.out.println("Your choice: ");
+            int input = Integer.parseInt(sc.nextLine());
+            switch (input) {
+                default : return;
+                case 1  : findOptimal(sc);break;
+                case 2  : generateCustomGraph(sc);break;
+                case 3  : simulate(sc); break;
+                case 4  : simulateAll(); break;
+            }
+        }
+    }
 
+    private static void findOptimal(Scanner sc){
+        System.out.println("Enter N");
+        int n = Integer.parseInt(sc.nextLine());
+        System.out.println("Enter MinComp Mult");
+        float minComp = Float.parseFloat(sc.nextLine()) * n;
+        System.out.println("Enter MaxComp Mult");
+        float maxComp = Float.parseFloat(sc.nextLine()) * n;
+        new CustomGeneration(n).findOptimal(0,1, minComp,maxComp);
+    }
 
-        System.out.println("Computing LCC for DSJC500-5.mtx...");
-        var lccStats1 = new LCCStats(downloadedGraph1);
-        System.out.println("LCC Vertices of DSJC500-5.mtx: " + lccStats1.lccVertCount());
+    private static void generateCustomGraph(Scanner sc){
+        System.out.println("Enter N");
+        int n = Integer.parseInt(sc.nextLine());
+        System.out.println("Enter R");
+        float r = Float.parseFloat(sc.nextLine());
+        var g = Generator.generateGraph(n, r);
+        System.out.println("Enter filename");
+        GraphSaver.saveGraph(g, sc.nextLine());
+    }
 
-        System.out.println("Implementing BFS for DSJC500-5.mtx...");
-        var BFS1 = BFS.findLongestSimplePath(lccStats1.getLcc());
-        System.out.println("BFS Vertices of DSJC500-5.mtx: " + BFS1.size());
-        System.out.println("BFS Edges of DSJC500-5.mtx: " + (BFS1.size() - 1));
-        System.out.println("Longest Simple Path for DSJC500-5.mtx:");
-        System.out.println(BFS1);
-        System.out.println("--------------------------------------------");
-        System.out.println("Implementing DFS for DSJC500-5.mtx...");
-        var DFS1 = DFS.findLongestSimplePath(lccStats1.getLcc());
-        System.out.println("DFS Vertices of DSJC500-5.mtx: " + DFS1.size());
-        System.out.println("DFS Edges of DSJC500-5.mtx: " + (DFS1.size() - 1));
-        System.out.println("Longest Simple Path for DSJC500-5.mtx:");
-        System.out.println(DFS1);
-        System.out.println("********************************************");
+    private static void simulate(Scanner sc){
+        System.out.println("Enter file name to use");
+        System.out.println("Built-in Available: ");
+        System.out.println("\tDSJC500-5.mtx");
+        System.out.println("\tinf-euroroad.edges");
+        System.out.println("\tinf-power.mtx");
+        System.out.println("\tcustom_300.edges");
+        System.out.println("\tcustom_400.edges");
+        System.out.println("\tcustom_500.edges");
 
+        var filename = sc.nextLine();
+        System.out.println("Simulating for " + filename);
+        simulateForGraph(filename);
+    }
 
-        System.out.println("Computing LCC for inf-euroroad.edges...");
-        var lccStats2 = new LCCStats(downloadedGraph2);
-        System.out.println("LCC Vertices of inf-euroroad.edges: " + lccStats2.lccVertCount());
+    private static void simulateAll(){
+        var files = new ArrayList<>(Arrays.asList("DSJC500-5.mtx","inf-euroroad.edges","inf-power.mtx",
+                "custom_300.edges","custom_400.edges", "custom_500.edges"));
 
-        System.out.println("Implementing BFS for inf-euroroad.edges...");
-        var BFS2 = BFS.findLongestSimplePath(lccStats2.getLcc());
-        System.out.println("BFS Vertices of inf-euroroad.edges: " + BFS2.size());
-        System.out.println("BFS Edges of inf-euroroad.edges: " + (BFS2.size() - 1));
-        System.out.println("Longest Simple Path for inf-euroroad.edges:");
-        System.out.println(BFS2);
-        System.out.println("--------------------------------------------");
-        System.out.println("Implementing DFS for inf-euroroad.edges...");
-        var DFS2 = DFS.findLongestSimplePath(lccStats2.getLcc());
-        System.out.println("DFS Vertices of inf-euroroad.edges: " + DFS2.size());
-        System.out.println("DFS Edges of inf-euroroad.edges: " + (DFS2.size() - 1));
-        System.out.println("Longest Simple Path for inf-euroroad.edges:");
-        System.out.println(DFS2);
-        System.out.println("********************************************");
+        System.out.println("Go grab some tea, this will take a while :p");
+        var completed = new AtomicInteger(0);
+        ExecutorService executorService = Executors.newFixedThreadPool(files.size());
+        for(var file : files){
+            executorService.submit(new SimulationRunner(file, completed));
+        }
+        try{
 
+            boolean lol=false;
+            while (completed.get() < files.size()){
+                Thread.sleep(1000);
+                if(lol)
+                    System.out.println("Status - Completed : " + completed + " / " + files.size());
+                else
+                    System.out.println("Status | Completed : " + completed + " / " + files.size());
 
-        System.out.println("Computing LCC for inf-power.mtx...");
-        var lccStats3 = new LCCStats(downloadedGraph3);
-        System.out.println("LCC Vertices of inf-power.mtx: " + lccStats3.lccVertCount());
+                lol = !lol;
+            }
+            executorService.shutdown();
+            System.out.println("All done! woohoo!!");
+        }
+        catch (Exception ex){
+            System.out.println(ex.getMessage());
+        }
+    }
 
-        System.out.println("Implementing BFS for inf-power.mtx...");
-        var BFS3 = BFS.findLongestSimplePath(lccStats3.getLcc());
-        System.out.println("BFS Vertices of inf-power.mtx: " + BFS3.size());
-        System.out.println("BFS Edges of inf-power.mtx: " + (BFS3.size() - 1));
-        System.out.println("Longest Simple Path for inf-power.mtx:");
-        System.out.println(BFS3);
-        System.out.println("--------------------------------------------");
-        System.out.println("Implementing DFS for inf-power.mtx...");
-        var DFS3 = DFS.findLongestSimplePath(lccStats3.getLcc());
-        System.out.println("DFS Vertices of inf-power.mtx: " + DFS3.size());
-        System.out.println("DFS Edges of inf-power.mtx: " + (DFS3.size() - 1));
-        System.out.println("Longest Simple Path for inf-power.mtx:");
-        System.out.println(DFS3);
-        System.out.println("********************************************");
-
+    private static void simulateForGraph(String filename){
+        var g = GraphReader.readGraph(filename);
+        var stats = new LCCStats(g);
+        stats.simulate();
     }
 }

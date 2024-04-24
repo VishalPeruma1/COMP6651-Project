@@ -48,9 +48,13 @@ public class LCCStats {
 
     public int lMaxAStar(){
         int lMax = 0;
-        for(var vert : getLcc().vertexList){
-            var o = Dijkstra.lsp(lcc, vert);
-            lMax = Math.max(lMax, o);
+        for(var v1 : getLcc().vertexList){
+           for(var v2 : getLcc().vertexList){
+               if(v1.equals(v2))
+                   continue;
+               var o = AStar.lsp(lcc, v1,v2);
+               lMax = Math.max(lMax, o);
+           }
         }
         return lMax;
     }

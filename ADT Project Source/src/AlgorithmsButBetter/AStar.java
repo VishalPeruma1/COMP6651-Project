@@ -30,39 +30,61 @@ public class AStar {
     public static int lsp(Graph G, Vertex s, Vertex d) {
         initializeSingleSourceMax(G, s);
         for (Vertex v : G.vertexList) {
-            v.heuristic = 0; // Set heuristic distance from v to d to 0
+            v.heuristic = 0;
         }
-        Set<Vertex> S = new HashSet<>(); // Closed list
+        Set<Vertex> S = new HashSet<>();
         PriorityQueue<Vertex> Q = new PriorityQueue<>(Comparator.comparingDouble((Vertex v) -> v.dist + v.heuristic).reversed()); // Max heap
         Q.addAll(G.vertexList);
 
         while (!Q.isEmpty()) {
             Vertex u = Q.poll();
-            S.add(u); // Add u to closed list
+            S.add(u);
             for (Edge e : u.getEdgeList()) {
                 Vertex v = (e.v1 == u) ? e.v2 : e.v1;
-                relaxMax(u, v); // Relaxation process for LSP
-                if (v.dist != Double.NEGATIVE_INFINITY) {
-                    if (S.contains(v)) {
-                        S.remove(v); // Remove v from closed list
-                        Q.offer(v); // Insert v back into open list
-                    } else {
-                        Q.remove(v);
+                var curr = v.dist;
+                relaxMax(u, v);
+                if (curr > v.dist && !S.contains(v)) {
+                    if (v.prev == null || !v.prev.equals(u)) {
+                        if (Q.contains(v)) {
+                            Q.remove(v);
+                        }
                         Q.offer(v);
                     }
                 }
             }
         }
-
         // Reconstruct the longest path
+        Set<Vertex> visited = new HashSet<>();
         List<Vertex> longestPath = new ArrayList<>();
+        var edges = new ArrayList<Edge>();
         Vertex current = d;
-        while (current != null) {
+
+        while (current != null && !visited.contains(current)) {
+            visited.add(current);
             longestPath.add(current);
-            current = current.prev;
+            Vertex next = current.prev;
+            if (next != null) {
+                var e = G.getEdge(current, next);
+                if (e != null)
+                    edges.add(e);
+            }
+            current = next;
         }
-        Collections.reverse(longestPath);
-        return longestPath.size();
+
+        if (hasCycle(longestPath)) {
+            return 0;
+        }
+        return edges.size();
+    }
+
+    private static boolean hasCycle(List<Vertex> path) {
+        Set<Vertex> visited = new HashSet<>();
+        for (Vertex v : path) {
+            if (!visited.add(v)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

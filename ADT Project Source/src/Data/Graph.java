@@ -9,11 +9,15 @@ public class Graph {
     public String name;
     public List<Vertex> vertexList;
     public List<Edge> edgeList;
+    public int n;
+    public String r;
 
-    public Graph(String name, List<Vertex> vertexList, List<Edge> edgeList){
+    public Graph(String name, List<Vertex> vertexList, List<Edge> edgeList, int n, String r){
         this.name = name;
         this.vertexList = vertexList;
         this.edgeList = edgeList;
+        this.n = n;
+        this.r = r;
     }
 
     public Edge getEdge(Vertex v1, Vertex v2){

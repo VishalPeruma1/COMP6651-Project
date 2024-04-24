@@ -13,7 +13,7 @@ public class CustomGeneration {
 
     public void findOptimal(float minR, float maxR, float minComp, float maxComp){
         float mid = (minR + maxR)/2;
-        LCCStats stats = new LCCStats(Generator.generateGraph(n, mid));
+        LCCStats stats = new LCCStats(Generator.generateGraph(n, mid), false, 0, "-");
         int nodes = stats.lccVertCount();
 
         if(nodes >= minComp && nodes <= maxComp){

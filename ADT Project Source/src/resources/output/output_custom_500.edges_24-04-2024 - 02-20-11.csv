@@ -1,0 +1,5 @@
+Algorithms,n,r,LCC Vertices,LCC Average Degree,Max Degree,LMax
+DFS Heuristic,500,0.017097473,500,12,20,124
+Dijkstra Heuristic,500,0.017097473,500,12,20,289
+A* Heuristic,500,0.017097473,500,12,20,72
+BFS Heuristic,500,0.017097473,500,12,20,91

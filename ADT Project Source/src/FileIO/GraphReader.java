@@ -21,15 +21,21 @@ public class GraphReader {
         try {
             List<Vertex> vertexList = new ArrayList<>();
             List<Edge> edgeList = new ArrayList<>();
-            Map<String, Vector2> vertexPositions =  new HashMap<>();
             Map<String, Vertex> vertexMap = new HashMap<>();
             String filePath = "src/resources/graphs/" + fileName;
             String graphName = fileName.substring(0, fileName.lastIndexOf('.'));
+            String r = "-";
             br = new BufferedReader(new FileReader(filePath));
             int edgeIndex = 0;
             String line;
             while ((line = br.readLine()) != null) {
-                if (line.startsWith("%")) continue; // Skipping comments
+                if (line.startsWith("%")) {
+                    if(line.startsWith("% CustomGraph:")) {
+                        String[] graphParams = line.split("_");
+                        r = graphParams[2];
+                    }
+                    continue;
+                }// Skipping comments
                 String[] parts = line.trim().split("\\s+");
                 String vertex1Name;
                 String vertex2Name;
@@ -85,7 +91,7 @@ public class GraphReader {
                 }
             }
             br.close();
-            return new Graph(graphName, vertexList, edgeList);
+            return new Graph(graphName, vertexList, edgeList, vertexList.size(), r);
         }  catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("File does not exist!");

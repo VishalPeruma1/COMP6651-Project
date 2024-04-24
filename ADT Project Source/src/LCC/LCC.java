@@ -41,7 +41,7 @@ public class LCC {
         }
 
         // Create a new graph instance for the largest connected component
-        return new Graph("Largest Connected Component", largestComponentVertices, largestComponentEdges);
+        return new Graph("Largest Connected Component", largestComponentVertices, largestComponentEdges, 0, "-");
     }
 
     private static List<Vertex> depthFirstSearch(Vertex startVertex, Set<Vertex> visited) {

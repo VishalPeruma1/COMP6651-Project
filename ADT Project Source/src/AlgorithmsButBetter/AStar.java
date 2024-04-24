@@ -43,7 +43,7 @@ public class AStar {
                 Vertex v = (e.v1 == u) ? e.v2 : e.v1;
                 var curr = v.dist;
                 relaxMax(u, v);
-                if (curr > v.dist && !S.contains(v)) {
+                if (v.dist > curr && !S.contains(v)) {
                     if (v.prev == null || !v.prev.equals(u)) {
                         if (Q.contains(v)) {
                             Q.remove(v);

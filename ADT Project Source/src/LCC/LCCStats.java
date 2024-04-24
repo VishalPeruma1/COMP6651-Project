@@ -1,5 +1,6 @@
 package LCC;
 
+import AlgorithmsButBetter.Dijkstra;
 import Data.Graph;
 
 /**
@@ -22,5 +23,14 @@ public class LCCStats {
 
     public int lccAvgDeg(){
         return (2*lcc.edgeList.size())/lccVertCount();
+    }
+
+    public int lMaxDijkstra(){
+        int lMax = 0;
+        for(var vert : getLcc().vertexList){
+            var o = Dijkstra.lsp(lcc, vert);
+            lMax = Math.max(lMax, o);
+        }
+        return lMax;
     }
 }

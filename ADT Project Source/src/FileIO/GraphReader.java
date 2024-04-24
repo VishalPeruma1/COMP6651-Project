@@ -41,12 +41,12 @@ public class GraphReader {
                         vertex1Name = "vert_"+parts[0];
                         vertex2Name = "vert_"+parts[1];
                         if(!vertexMap.containsKey(vertex1Name)) {
-                            vertex1 = new Vertex(vertex1Name, new Vector2((float) Math.random(), (float) Math.random()));
+                            vertex1 = new Vertex(vertex1Name, Vector2.zero()); //new Vector2((float) Math.random(), (float) Math.random()));
                             vertexMap.put(vertex1Name, vertex1);
                             vertexList.add(vertex1);
                         }
                         if(!vertexMap.containsKey(vertex2Name)) {
-                            vertex2 = new Vertex(vertex2Name, new Vector2((float) Math.random(), (float) Math.random()));
+                            vertex2 = new Vertex(vertex2Name, Vector2.zero()); //new Vector2((float) Math.random(), (float) Math.random()));
                             vertexMap.put(vertex2Name, vertex2);
                             vertexList.add(vertex2);
                         }

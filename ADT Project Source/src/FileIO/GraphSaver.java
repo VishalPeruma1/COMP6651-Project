@@ -17,8 +17,8 @@ public class GraphSaver {
                 Vertex v2 = edge.v2;
                 Vector2 v1Position = v1.getPosition();
                 Vector2 v2Position = v2.getPosition();
-                bw.write(v1.getName() + " " + v1Position.x + " " + v1Position.y + " " +
-                        v2.getName() + " " + v2Position.x + " " + v2Position.y + "\n");
+                bw.write(v1.getName().replace("vert_", "") + " " + v1Position.x + " " + v1Position.y + " " +
+                        v2.getName().replace("vert_", "") + " " + v2Position.x + " " + v2Position.y + "\n");
             }
             return true;
         } catch (Exception e) {

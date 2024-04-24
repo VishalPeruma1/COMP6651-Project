@@ -2,6 +2,7 @@ package AlgorithmsButBetter;
 
 import Data.Edge;
 import Data.Graph;
+import Data.Vector2;
 import Data.Vertex;
 
 import java.util.*;
@@ -30,7 +31,7 @@ public class AStar {
     public static int lsp(Graph G, Vertex s, Vertex d) {
         initializeSingleSourceMax(G, s);
         for (Vertex v : G.vertexList) {
-            v.heuristic = 0;
+            v.heuristic = Vector2.euclidianDistance(s.getPosition(),d.getPosition());
         }
         Set<Vertex> S = new HashSet<>();
         PriorityQueue<Vertex> Q = new PriorityQueue<>(Comparator.comparingDouble((Vertex v) -> v.dist + v.heuristic).reversed()); // Max heap

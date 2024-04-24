@@ -33,4 +33,17 @@ public class LCCStats {
         }
         return lMax;
     }
+
+    public int lMaxAStar(){
+        int lMax = 0;
+        for(var vert : getLcc().vertexList){
+            var o = Dijkstra.lsp(lcc, vert);
+            lMax = Math.max(lMax, o);
+        }
+        return lMax;
+    }
+
+    public void simulate(){
+        System.out.println("MAX LSP " + lMaxAStar());
+    }
 }

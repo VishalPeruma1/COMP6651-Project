@@ -12,8 +12,10 @@ public class Vertex {
     private List<Edge> edgeList;
 
     //for dijkstra
-    public double dijDist;
-    public Vertex dijkPrev;
+    public double dist;
+    public Vertex prev;
+
+    public double heuristic;
 
 
     public Vector2 getPosition(){

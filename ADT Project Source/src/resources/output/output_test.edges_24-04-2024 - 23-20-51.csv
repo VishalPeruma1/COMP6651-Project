@@ -1,0 +1,5 @@
+Algorithms,n,r,LCC Vertices,LCC Average Degree,Max Degree,LMax
+DFS Heuristic,6,-,6,1,3,4
+Dijkstra Heuristic,6,-,6,1,3,4
+A* Heuristic,6,-,6,1,3,3
+BFS Heuristic,6,-,6,1,3,4

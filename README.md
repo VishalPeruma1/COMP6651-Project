@@ -18,7 +18,7 @@ This function lets you find an optimal **R** using Binary Search for a given val
 This function generates a graph for a given **N** and **R**, Once the graph is generated, a filename will be requested which will be used create the edges file for the generated graph
 #### Run Simulation (Option 3)
 
-This function runs the simulation for a single graph file, the filename is requested the simulation is started. The simulation will store the results as CSV at **{Project Dir}/resources/output** with the name **output_{Input Graph File Name}_{DD-MM-YY-HH-mm-ss}.csv**.
+This function runs the simulation for a single graph file, the filename is requested the simulation is started. The simulation will store the results as CSV at **{Project Dir}/src/resources/output** with the name **output_{Input Graph File Name}_{DD-MM-YY-HH-mm-ss}.csv**.
 #### Run Simulation All (Option 4)
 This runs simulation for the following files
 1. DSJC500-5.mtx
@@ -34,7 +34,7 @@ This runs simulation for the following files
 quits the application.
 
 ## Graph Directory
-All the graphs for the simulation are present in **{Project Dir}/resources/graphs**
+All the graphs for the simulation are present in **{Project Dir}/src/resources/graphs**
 Following graphs are present by default
 1. DSJC500-5.mtx
 2. INF-EUROROAD.edges
@@ -45,7 +45,7 @@ Following graphs are present by default
 
 ## Output
 The output of the simulation can be found at 
-**{Project Dir}/resources/output** 
+**{Project Dir}/src/resources/output** 
 with the name **output_{Input Graph File Name}_{DD-MM-YY-HH-mm-ss}.csv**.
 This can be then open in the spreadsheet of your choice.  An example output result table is shown below.
 
